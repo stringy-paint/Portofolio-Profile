@@ -44,7 +44,7 @@ export default function Portfolio() {
           <PinContainer title="uin-career-portal.id" href="https://github.com/stringy-paint">
             <div className="flex basis-full flex-col p-5 tracking-tight text-slate-100/50 w-[20rem] sm:w-[22rem] h-[20rem] bg-[#0d1117] border border-neutral-800 rounded-2xl shadow-2xl">
               <div className="flex items-center gap-3 mb-4">
-                <Globe className="text-blue-500 size-6" />
+                <Globe className="text-green-500 size-6" />
                 <h3 className="max-w-xs !pb-2 !m-0 font-bold text-lg text-slate-100">
                   Digital Career Portal UIN
                 </h3>
@@ -54,7 +54,7 @@ export default function Portfolio() {
                   Pengembangan penuh (full-stack) situs web portal karier UIN Jakarta, mencakup konfigurasi lingkungan aplikasi, relasi tabel database, dan komponen admin.
                 </span>
               </div>
-              <div className="flex w-full h-32 rounded-lg mt-4 bg-gradient-to-br from-blue-500/20 to-blue-900/40 border border-blue-500/30" />
+              <div className="flex w-full h-32 rounded-lg mt-4 bg-gradient-to-br from-green-500/20 to-green-900/40 border border-green-500/30" />
             </div>
           </PinContainer>
         </div>
@@ -64,7 +64,7 @@ export default function Portfolio() {
           <PinContainer title="Infrastruktur & CTF" href="https://github.com/stringy-paint">
             <div className="flex basis-full flex-col p-5 tracking-tight text-slate-100/50 w-[20rem] sm:w-[22rem] h-[20rem] bg-[#0d1117] border border-neutral-800 rounded-2xl shadow-2xl">
               <div className="flex items-center gap-3 mb-4">
-                <ServerCog className="text-purple-500 size-6" />
+                <ServerCog className="text-green-500 size-6" />
                 <h3 className="max-w-xs !pb-2 !m-0 font-bold text-lg text-slate-100">
                   Docker Server & Crypto
                 </h3>
@@ -74,7 +74,7 @@ export default function Portfolio() {
                   Penyebaran lingkungan backup server ter-containerize dengan Docker, dipadukan dengan implementasi script prediksi kloning state PRNG.
                 </span>
               </div>
-              <div className="flex w-full h-32 rounded-lg mt-4 bg-gradient-to-br from-purple-500/20 to-purple-900/40 border border-purple-500/30" />
+              <div className="flex w-full h-32 rounded-lg mt-4 bg-gradient-to-br from-green-500/20 to-green-900/40 border border-green-500/30" />
             </div>
           </PinContainer>
         </div>
@@ -84,7 +84,7 @@ export default function Portfolio() {
           <PinContainer title="LMS Usability Inspection" href="https://github.com/stringy-paint">
             <div className="flex basis-full flex-col p-5 tracking-tight text-slate-100/50 w-[20rem] sm:w-[22rem] h-[20rem] bg-[#0d1117] border border-neutral-800 rounded-2xl shadow-2xl">
               <div className="flex items-center gap-3 mb-4">
-                <Database className="text-emerald-500 size-6" />
+                <Database className="text-green-500 size-6" />
                 <h3 className="max-w-xs !pb-2 !m-0 font-bold text-lg text-slate-100">
                   Moodle LMS Integration
                 </h3>
@@ -94,7 +94,7 @@ export default function Portfolio() {
                   Proyek integrasi Learning Management System menggunakan Moodle yang dikombinasikan dengan metode Usability Inspection.
                 </span>
               </div>
-              <div className="flex w-full h-32 rounded-lg mt-4 bg-gradient-to-br from-emerald-500/20 to-emerald-900/40 border border-emerald-500/30" />
+              <div className="flex w-full h-32 rounded-lg mt-4 bg-gradient-to-br from-green-500/20 to-green-900/40 border border-green-500/30" />
             </div>
           </PinContainer>
         </div>
@@ -104,7 +104,7 @@ export default function Portfolio() {
           <PinContainer title="Digital Forensics Lab" href="https://github.com/stringy-paint">
             <div className="flex basis-full flex-col p-5 tracking-tight text-slate-100/50 w-[20rem] sm:w-[22rem] h-[20rem] bg-[#0d1117] border border-neutral-800 rounded-2xl shadow-2xl">
               <div className="flex items-center gap-3 mb-4">
-                <Lock className="text-orange-500 size-6" />
+                <Lock className="text-green-500 size-6" />
                 <h3 className="max-w-xs !pb-2 !m-0 font-bold text-lg text-slate-100">
                   Hash Verification
                 </h3>
@@ -114,7 +114,7 @@ export default function Portfolio() {
                   Analisis integritas data file menggunakan utilitas hashing kriptografi untuk kebutuhan laporan laboratorium forensik digital.
                 </span>
               </div>
-              <div className="flex w-full h-32 rounded-lg mt-4 bg-gradient-to-br from-orange-500/20 to-orange-900/40 border border-orange-500/30" />
+              <div className="flex w-full h-32 rounded-lg mt-4 bg-gradient-to-br from-green-500/20 to-green-900/40 border border-green-500/30" />
             </div>
           </PinContainer>
         </div>
@@ -124,7 +124,7 @@ export default function Portfolio() {
           <PinContainer title="Wireless Sensor Network" href="https://github.com/stringy-paint">
             <div className="flex basis-full flex-col p-5 tracking-tight text-slate-100/50 w-[20rem] sm:w-[22rem] h-[20rem] bg-[#0d1117] border border-neutral-800 rounded-2xl shadow-2xl">
               <div className="flex items-center gap-3 mb-4">
-                <Network className="text-cyan-500 size-6" />
+                <Network className="text-green-500 size-6" />
                 <h3 className="max-w-xs !pb-2 !m-0 font-bold text-lg text-slate-100">
                   NS2 Routing Simulation
                 </h3>
@@ -134,7 +134,7 @@ export default function Portfolio() {
                   Simulasi routing jaringan sembilan node menggunakan Network Simulator 2 pada graf node acak.
                 </span>
               </div>
-              <div className="flex w-full h-32 rounded-lg mt-4 bg-gradient-to-br from-cyan-500/20 to-cyan-900/40 border border-cyan-500/30" />
+              <div className="flex w-full h-32 rounded-lg mt-4 bg-gradient-to-br from-green-500/20 to-green-900/40 border border-green-500/30" />
             </div>
           </PinContainer>
         </div>
