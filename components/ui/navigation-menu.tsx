@@ -5,6 +5,7 @@ import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { ChevronDownIcon } from "lucide-react"
 import Link from "next/link"
+import { FaTerminal } from "react-icons/fa6"
 
 function NavigationMenu({
   align = "start",
@@ -169,11 +170,11 @@ function NavBar() {
     <header className="sticky top-0 z-[999] w-full border-b border-border bg-background/80 backdrop-blur-md py-4 ">
       <div className="container mx-auto flex items-center justify-between px-6 md:px-12">
         
-        {/* Bagian Kiri: Logo/Identitas */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="text-xl font-extrabold tracking-tighter"
+          className="text-xl font-extrabold tracking-tighter flex items-center gap-2"
         >
+          <FaTerminal className="size-5 text-green-500" />
           Ryan
         </button>
 
