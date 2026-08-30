@@ -111,7 +111,7 @@ export const BackgroundBeamsWithCollision = ({
       {/* Garis collision di paling bawah — tempat laser "pecah" */}
       <div
         ref={containerRef}
-        className="relative w-full h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent pointer-events-none"
+        className="relative w-full h-px bg-gradient-to-r from-transparent via-green-500/30 to-transparent pointer-events-none"
       />
     </div>
   );
@@ -220,7 +220,7 @@ const CollisionMechanism = ({
           repeatDelay: beamOptions.repeatDelay || 0,
         }}
         className={cn(
-          "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-blue-500 via-blue-500 to-transparent",
+          "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-green-500 via-green-500 to-transparent",
           beamOptions.className
         )}
       />
@@ -257,7 +257,7 @@ const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute -inset-x-10 top-0 m-auto h-2 w-10 rounded-full bg-gradient-to-r from-transparent via-blue-500 to-transparent blur-sm"
+        className="absolute -inset-x-10 top-0 m-auto h-2 w-10 rounded-full bg-gradient-to-r from-transparent via-green-500 to-transparent blur-sm"
       ></motion.div>
       {spans.map((span) => (
         <motion.span
@@ -269,7 +269,7 @@ const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
             opacity: 0,
           }}
           transition={{ duration: Math.random() * 1.5 + 0.5, ease: "easeOut" }}
-          className="absolute h-1 w-1 rounded-full bg-gradient-to-b from-blue-500 to-blue-300"
+          className="absolute h-1 w-1 rounded-full bg-gradient-to-b from-green-500 to-green-300"
         />
       ))}
     </div>
