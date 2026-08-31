@@ -37,9 +37,7 @@ export default function Portfolio() {
               </div>
               <div className="text-xs sm:text-sm !m-0 !p-0 font-normal flex-1">
                 <span className="text-slate-400 line-clamp-3 sm:line-clamp-4">
-                  Log aktivitas pengujian penetrasi dan eksploitasi celah
-                  keamanan selama program magang MBKM Vinix Batch 7 di divisi
-                  Cybersecurity.
+                  Aplikasi Absensi Berbasis Web yang memanfaatkan QR Code untuk memverifikasi kehadiran peserta menggunakan blockhain
                 </span>
               </div>
               <div className="relative flex w-full h-28 sm:h-32 rounded-lg mt-3 sm:mt-4 bg-gradient-to-br from-green-500/20 to-green-900/40 border border-green-500/30 overflow-hidden shrink-0">
@@ -103,9 +101,7 @@ export default function Portfolio() {
               </div>
               <div className="text-xs sm:text-sm !m-0 !p-0 font-normal flex-1">
                 <span className="text-slate-400 line-clamp-3 sm:line-clamp-4">
-                  Penyebaran lingkungan backup server ter-containerize dengan
-                  Docker, dipadukan dengan implementasi script prediksi kloning
-                  state PRNG.
+                  aplikasi pembelajaran untuk mahasiswa saling belajar materi 1 sama lain.
                 </span>
               </div>
               <div className="relative flex w-full h-28 sm:h-32 rounded-lg mt-3 sm:mt-4 bg-gradient-to-br from-green-500/20 to-green-900/40 border border-green-500/30 overflow-hidden shrink-0">
