@@ -17,7 +17,7 @@ export default function Footer() {
               <span>Ryan.</span>
             </Link>
             <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-xs">
-              Meretas sistem untuk memahaminya, meracik kode untuk mengamankannya.
+              terbuka Untuk peluang kolaborasi, proyek pengembangan web, dan diskusi seputar keamanan siber. 
             </p>
           </div>
 

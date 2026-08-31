@@ -15,8 +15,7 @@ export default function Portfolio() {
           Proyek
         </h2>
         <p className="text-gray-400 max-w-2xl text-sm sm:text-base md:text-lg text-left">
-          Kumpulan studi kasus penetrasi keamanan dan pengembangan arsitektur
-          web digital.
+          Kumpulan portofolio pengembangan aplikasi web full-stack, integrasi sistem blockchain, dan perancangan arsitektur digital terukur.
         </p>
       </div>
 

@@ -86,13 +86,13 @@ export default function About() {
 
         {/* --- KOLOM KANAN: SKILLS (BADGE STYLE) --- */}
         <div className="w-full flex flex-col h-full">
-          {/* Judul di luar kotak (sejajar dengan Tentang Saya) */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4 sm:mb-8">
-            Keahlian Teknis
-          </h2>
           
           {/* Kotak Skills */}
           <div className="bg-black/40 backdrop-blur-sm border border-neutral-800 rounded-xl p-4 sm:p-6 md:p-8 shadow-[0_0_30px_rgba(0,0,0,0.5)] flex-1 flex flex-col justify-center">
+            
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-6 sm:mb-8 text-left">
+              Keahlian Teknis
+            </h2>
             
             <div className="space-y-6 sm:space-y-8">
               {/* Frontend */}

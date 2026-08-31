@@ -14,7 +14,7 @@ export default function Experience() {
             Riwayat Pengalaman
           </h2>
           <p className="text-gray-400 text-sm sm:text-base md:text-lg text-left">
-            Perjalanan karier, proyek profesional, dan riwayat akademis.
+            Perjalanan karier dan riwayat akademis.
           </p>
         </div>
 
