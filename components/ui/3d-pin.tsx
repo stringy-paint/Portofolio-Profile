@@ -20,6 +20,25 @@ export const PinContainer = ({
   const [transform, setTransform] = useState(
     "translate(-50%,-50%) rotateX(0deg)"
   );
+  const [isTouched, setIsTouched] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsTouched(false);
+        setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)");
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, []);
 
   const onMouseEnter = () => {
     setTransform("translate(-50%,-50%) rotateX(40deg) scale(0.8)");
@@ -28,32 +47,46 @@ export const PinContainer = ({
     setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)");
   };
 
+  const handleTouch = () => {
+    setIsTouched((prev) => {
+      const next = !prev;
+      if (next) {
+        setTransform("translate(-50%,-50%) rotateX(40deg) scale(0.85)");
+      } else {
+        setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)");
+      }
+      return next;
+    });
+  };
+
   return (
     <div
+      ref={containerRef}
       className={cn(
-        "relative group/pin z-50  cursor-pointer",
+        "relative group/pin z-30 cursor-pointer w-full flex items-center justify-center",
         containerClassName
       )}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onClick={handleTouch}
     >
       <div
         style={{
           perspective: "1000px",
           transform: "rotateX(70deg) translateZ(0deg)",
         }}
-        className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2"
+        className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
       >
         <div
           style={{
             transform: transform,
           }}
-          className="absolute left-1/2 p-4 top-1/2  flex justify-start items-start  rounded-2xl  shadow-[0_8px_16px_rgb(0_0_0/0.4)] bg-black border border-white/[0.1] group-hover/pin:border-white/[0.2] transition duration-700 overflow-hidden"
+          className="absolute left-1/2 p-2.5 sm:p-4 top-1/2 flex justify-start items-start rounded-2xl shadow-[0_8px_16px_rgb(0_0_0/0.4)] bg-black border border-white/[0.1] group-hover/pin:border-white/[0.2] transition duration-700 overflow-hidden pointer-events-auto max-w-[calc(100vw-3rem)] sm:max-w-none"
         >
-          <div className={cn(" relative z-50 ", className)}>{children}</div>
+          <div className={cn("relative z-50 w-full", className)}>{children}</div>
         </div>
       </div>
-      <PinPerspective title={title} href={href} />
+      <PinPerspective title={title} href={href} isVisible={isTouched} />
     </div>
   );
 };
@@ -61,18 +94,31 @@ export const PinContainer = ({
 export const PinPerspective = ({
   title,
   href,
+  isVisible,
 }: {
   title?: string;
   href?: string;
+  isVisible?: boolean;
 }) => {
   return (
-    <motion.div className="pointer-events-none  w-96 h-80 flex items-center justify-center opacity-0 group-hover/pin:opacity-100 z-[60] transition duration-500">
-      <div className=" w-full h-full -mt-7 flex-none  inset-0">
-        <div className="absolute top-0 inset-x-0  flex justify-center">
+    <motion.div
+      className={cn(
+        "pointer-events-none w-full max-w-[20rem] sm:max-w-xs md:w-96 h-80 flex items-center justify-center opacity-0 group-hover/pin:opacity-100 z-[60] transition duration-500 overflow-visible",
+        isVisible && "opacity-100"
+      )}
+    >
+      <div className="w-full h-full -mt-7 flex-none inset-0">
+        <div className="absolute top-0 inset-x-0 flex justify-center">
           <a
             href={href}
             target={"_blank"}
-            className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 "
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className={cn(
+              "relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-1 px-4 ring-1 ring-white/10 hover:ring-green-500/50 hover:bg-zinc-900 transition-all cursor-pointer shadow-lg",
+              "pointer-events-none group-hover/pin:pointer-events-auto",
+              isVisible && "pointer-events-auto"
+            )}
           >
             <span className="relative z-20 text-white text-xs font-bold inline-block py-0.5">
               {title}
@@ -108,7 +154,7 @@ export const PinPerspective = ({
                 repeat: Infinity,
                 delay: 0,
               }}
-              className="absolute left-1/2 top-1/2  h-[11.25rem] w-[11.25rem] rounded-[50%] bg-green-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
+              className="absolute left-1/2 top-1/2 h-[11.25rem] w-[11.25rem] rounded-[50%] bg-green-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
             ></motion.div>
             <motion.div
               initial={{
@@ -128,7 +174,7 @@ export const PinPerspective = ({
                 repeat: Infinity,
                 delay: 2,
               }}
-              className="absolute left-1/2 top-1/2  h-[11.25rem] w-[11.25rem] rounded-[50%] bg-green-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
+              className="absolute left-1/2 top-1/2 h-[11.25rem] w-[11.25rem] rounded-[50%] bg-green-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
             ></motion.div>
             <motion.div
               initial={{
@@ -148,16 +194,16 @@ export const PinPerspective = ({
                 repeat: Infinity,
                 delay: 4,
               }}
-              className="absolute left-1/2 top-1/2  h-[11.25rem] w-[11.25rem] rounded-[50%] bg-green-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
+              className="absolute left-1/2 top-1/2 h-[11.25rem] w-[11.25rem] rounded-[50%] bg-green-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
             ></motion.div>
           </>
         </div>
 
         <>
           <motion.div className="absolute right-1/2 bottom-1/2 bg-gradient-to-b from-transparent to-green-500 translate-y-[14px] w-px h-20 group-hover/pin:h-40 blur-[2px]" />
-          <motion.div className="absolute right-1/2 bottom-1/2 bg-gradient-to-b from-transparent to-green-500 translate-y-[14px] w-px h-20 group-hover/pin:h-40  " />
+          <motion.div className="absolute right-1/2 bottom-1/2 bg-gradient-to-b from-transparent to-green-500 translate-y-[14px] w-px h-20 group-hover/pin:h-40" />
           <motion.div className="absolute right-1/2 translate-x-[1.5px] bottom-1/2 bg-green-600 translate-y-[14px] w-[4px] h-[4px] rounded-full z-40 blur-[3px]" />
-          <motion.div className="absolute right-1/2 translate-x-[0.5px] bottom-1/2 bg-green-300 translate-y-[14px] w-[2px] h-[2px] rounded-full z-40 " />
+          <motion.div className="absolute right-1/2 translate-x-[0.5px] bottom-1/2 bg-green-300 translate-y-[14px] w-[2px] h-[2px] rounded-full z-40" />
         </>
       </div>
     </motion.div>

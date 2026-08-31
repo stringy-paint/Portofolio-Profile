@@ -6,57 +6,58 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-neutral-800 bg-[#0d1117] pt-16 pb-8 font-sans text-gray-300">
-      <div className="container mx-auto px-6 md:px-16 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+    <footer className="border-t border-neutral-800 bg-[#0d1117] pt-12 sm:pt-16 pb-8 font-sans text-gray-300">
+      <div className="container mx-auto px-4 sm:px-8 md:px-16 max-w-7xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-8 sm:mb-12">
           
           {/* Kolom 1: Brand & Tagline */}
-          <div className="space-y-4">
-            <Link href="/" className="text-2xl font-extrabold tracking-tighter text-white flex items-center gap-2 w-fit">
-              <FaTerminal className="size-6 text-green-500" />
+          <div className="space-y-3 sm:space-y-4">
+            <Link href="/" className="text-xl sm:text-2xl font-extrabold tracking-tighter text-white flex items-center gap-2 w-fit hover:text-green-400 transition-colors">
+              <FaTerminal className="size-5 sm:size-6 text-green-500" />
               <span>Ryan.</span>
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+            <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-xs">
               Meretas sistem untuk memahaminya, meracik kode untuk mengamankannya.
             </p>
           </div>
 
           {/* Kolom 2: Tautan Cepat */}
           <div>
-            <h3 className="text-white font-bold mb-4">Navigasi Sistem</h3>
-            <ul className="space-y-3 text-sm">
+            <h3 className="text-white font-bold mb-3 sm:mb-4 text-sm sm:text-base">Navigasi Sistem</h3>
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
               <li><Link href="#about" className="hover:text-green-400 transition-colors">Tentang Saya</Link></li>
-              <li><Link href="#portfolio" className="hover:text-green-400 transition-colors">Arsip Proyek</Link></li>
+              <li><Link href="#Projects" className="hover:text-green-400 transition-colors">Arsip Proyek</Link></li>
               <li><Link href="#experience" className="hover:text-green-400 transition-colors">Riwayat Pengalaman</Link></li>
               <li><Link href="#pencapaian" className="hover:text-green-400 transition-colors">Sertifikasi & Pencapaian</Link></li>
+              <li><Link href="#kontak" className="hover:text-green-400 transition-colors">Kontak</Link></li>
             </ul>
           </div>
 
           {/* Kolom 3: Jaringan Sosial */}
-          <div>
-            <h3 className="text-white font-bold mb-4">Jaringan Eksternal</h3>
-            <div className="flex gap-4">
-              <a href="https://github.com/stringy-paint" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2.5 rounded-full bg-neutral-900 border border-neutral-800 hover:border-green-500 hover:text-green-500 hover:shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all">
-                <FaGithub className="size-5" />
+          <div className="sm:col-span-2 md:col-span-1">
+            <h3 className="text-white font-bold mb-3 sm:mb-4 text-sm sm:text-base">Jaringan Eksternal</h3>
+            <div className="flex gap-3 sm:gap-4 flex-wrap">
+              <a href="https://github.com/stringy-paint" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2.5 rounded-full bg-neutral-900 border border-neutral-800 hover:border-green-500 hover:text-green-500 hover:shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all min-w-[40px] min-h-[40px] flex items-center justify-center">
+                <FaGithub className="size-4 sm:size-5" />
               </a>
-              <a href="https://www.linkedin.com/in/ryan-hidayatullah-b20408280/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2.5 rounded-full bg-neutral-900 border border-neutral-800 hover:border-green-500 hover:text-green-500 hover:shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all">
-                <FaLinkedin className="size-5" />
+              <a href="https://www.linkedin.com/in/ryan-hidayatullah-b20408280/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2.5 rounded-full bg-neutral-900 border border-neutral-800 hover:border-green-500 hover:text-green-500 hover:shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all min-w-[40px] min-h-[40px] flex items-center justify-center">
+                <FaLinkedin className="size-4 sm:size-5" />
               </a>
-              <a href="https://www.instagram.com/ryans.hd/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="p-2.5 rounded-full bg-neutral-900 border border-neutral-800 hover:border-green-500 hover:text-green-500 hover:shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all">
-                <FaInstagram className="size-5" />
+              <a href="https://www.instagram.com/ryans.hd/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="p-2.5 rounded-full bg-neutral-900 border border-neutral-800 hover:border-green-500 hover:text-green-500 hover:shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all min-w-[40px] min-h-[40px] flex items-center justify-center">
+                <FaInstagram className="size-4 sm:size-5" />
               </a>
-              <a href="mailto:ryanhidayatullah0612@gmail.com" aria-label="Email" className="p-2.5 rounded-full bg-neutral-900 border border-neutral-800 hover:border-emerald-500 hover:text-emerald-500 hover:shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all">
-                <FaEnvelope className="size-5" />
+              <a href="mailto:ryanhidayatullah0612@gmail.com" aria-label="Email" className="p-2.5 rounded-full bg-neutral-900 border border-neutral-800 hover:border-emerald-500 hover:text-emerald-500 hover:shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all min-w-[40px] min-h-[40px] flex items-center justify-center">
+                <FaEnvelope className="size-4 sm:size-5" />
               </a>
             </div>
           </div>
         </div>
 
         {/* Hak Cipta & Info Teknologi */}
-        <div className="border-t border-neutral-800 pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500">
+        <div className="border-t border-neutral-800 pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3 sm:gap-0 text-center sm:text-left">
           <p>&copy; {currentYear} Ryan Hidayatullah. Seluruh hak cipta dilindungi.</p>
-          <p className="mt-4 md:mt-0 flex items-center gap-1 font-mono text-xs">
-            Dikompilasi menggunakan <span className="text-green-500">Next.js</span> & <span className="text-green-500">Tailwind</span>
+          <p className="flex items-center gap-1 font-mono text-xs">
+            Dikompilasi menggunakan <span className="text-green-500 font-semibold">Next.js</span> & <span className="text-green-500 font-semibold">Tailwind</span>
           </p>
         </div>
       </div>

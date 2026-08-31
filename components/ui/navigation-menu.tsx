@@ -1,10 +1,10 @@
 "use client"
+import React, { useState } from "react"
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu"
 import { cva } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import { ChevronDownIcon } from "lucide-react"
-import Link from "next/link"
+import { ChevronDownIcon, Menu, X } from "lucide-react"
 import { FaTerminal } from "react-icons/fa6"
 
 function NavigationMenu({
@@ -116,7 +116,7 @@ function NavigationMenuPositioner({
         )}
         {...props}
       >
-        <NavigationMenuPrimitive.Popup className="data-[ending-style]:easing-[ease] xs:w-(--popup-width) relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) rounded-lg bg-popover text-popover-foreground shadow ring-1 ring-foreground/10 transition-[opacity,transform,width,height,scale,translate] duration-[0.35s] ease-[cubic-bezier(0.22,1,0.36,1)] outline-none data-ending-style:scale-90 data-ending-style:opacity-0 data-ending-style:duration-150 data-starting-style:scale-90 data-starting-style:opacity-0">
+        <NavigationMenuPrimitive.Popup className="data-[ending-style]:easing-[ease] relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) rounded-lg bg-popover text-popover-foreground shadow ring-1 ring-foreground/10 transition-[opacity,transform,width,height,scale,translate] duration-[0.35s] ease-[cubic-bezier(0.22,1,0.36,1)] outline-none data-ending-style:scale-90 data-ending-style:opacity-0 data-ending-style:duration-150 data-starting-style:scale-90 data-starting-style:opacity-0">
           <NavigationMenuPrimitive.Viewport className="relative size-full overflow-hidden" />
         </NavigationMenuPrimitive.Popup>
       </NavigationMenuPrimitive.Positioner>
@@ -159,51 +159,130 @@ function NavigationMenuIndicator({
 }
 
 function NavBar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const headerRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsOpen(false);
+      }
+    };
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (isOpen && headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("resize", handleResize);
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isOpen]);
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
+    setIsOpen(false);
   };
 
   return (
-    <header className="sticky top-0 z-[999] w-full border-b border-border bg-background/80 backdrop-blur-md py-4 ">
-      <div className="container mx-auto flex items-center justify-between px-6 md:px-12">
-        
+    <header ref={headerRef} className="sticky top-0 z-[999] w-full border-b border-neutral-800 bg-background/80 backdrop-blur-md">
+      <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-12 py-3.5 sm:py-4">
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="text-xl font-extrabold tracking-tighter flex items-center gap-2"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setIsOpen(false);
+          }}
+          className="text-lg sm:text-xl font-extrabold tracking-tighter flex items-center gap-2 cursor-pointer text-white hover:text-green-400 transition-colors"
         >
-          <FaTerminal className="size-5 text-green-500" />
-          Ryan
+          <FaTerminal className="size-4 sm:size-5 text-green-500" />
+          <span>Ryan</span>
         </button>
 
-        {/* Bagian Kanan: Menu Navigasi */}
-        <nav className="hidden md:flex items-center gap-2">
-          
-          <button onClick={() => scrollTo("about")} className={navigationMenuTriggerStyle()}>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+          <button onClick={() => scrollTo("about")} className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}>
             About Me
           </button>
-          
-          <button onClick={() => scrollTo("Projects")} className={navigationMenuTriggerStyle()}>
+          <button onClick={() => scrollTo("Projects")} className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}>
             Projects
           </button>
-          
-           <button onClick={() => scrollTo("experience")} className={navigationMenuTriggerStyle()}>
+          <button onClick={() => scrollTo("experience")} className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}>
             Experience
           </button>
-
-          <button onClick={() => scrollTo("pencapaian")} className={navigationMenuTriggerStyle()}>
+          <button onClick={() => scrollTo("pencapaian")} className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}>
             Pencapaian
           </button>
-          
-          <button onClick={() => scrollTo("kontak")} className={navigationMenuTriggerStyle()}>
+          <button onClick={() => scrollTo("kontak")} className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}>
             Kontak
           </button>
-
         </nav>
-        
+
+        {/* Mobile Hamburger Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Tutup Menu" : "Buka Menu"}
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
+          className="md:hidden flex items-center justify-center p-2 rounded-lg border border-neutral-800 bg-neutral-900/60 text-gray-300 hover:text-white hover:border-green-500/50 hover:bg-neutral-800 transition-all focus:outline-none focus:ring-2 focus:ring-green-500/50 min-w-[40px] min-h-[40px] cursor-pointer"
+        >
+          {isOpen ? <X className="size-5 text-green-400" /> : <Menu className="size-5 text-green-400" />}
+        </button>
       </div>
+
+      {/* Mobile Dropdown Navigation Menu */}
+      {isOpen && (
+        <nav id="mobile-navigation" className="md:hidden border-t border-neutral-800/80 bg-black/95 backdrop-blur-xl px-4 py-3 flex flex-col gap-1.5 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
+          <button
+            onClick={() => scrollTo("about")}
+            className="flex items-center justify-between w-full px-3.5 py-2.5 rounded-lg text-left text-sm font-medium text-gray-200 hover:bg-neutral-900 hover:text-green-400 border border-transparent hover:border-neutral-800 active:bg-neutral-800 transition-all cursor-pointer"
+          >
+            <span>About Me</span>
+            <span className="text-xs text-green-500 font-mono">01.</span>
+          </button>
+          <button
+            onClick={() => scrollTo("Projects")}
+            className="flex items-center justify-between w-full px-3.5 py-2.5 rounded-lg text-left text-sm font-medium text-gray-200 hover:bg-neutral-900 hover:text-green-400 border border-transparent hover:border-neutral-800 active:bg-neutral-800 transition-all cursor-pointer"
+          >
+            <span>Projects</span>
+            <span className="text-xs text-green-500 font-mono">02.</span>
+          </button>
+          <button
+            onClick={() => scrollTo("experience")}
+            className="flex items-center justify-between w-full px-3.5 py-2.5 rounded-lg text-left text-sm font-medium text-gray-200 hover:bg-neutral-900 hover:text-green-400 border border-transparent hover:border-neutral-800 active:bg-neutral-800 transition-all cursor-pointer"
+          >
+            <span>Experience</span>
+            <span className="text-xs text-green-500 font-mono">03.</span>
+          </button>
+          <button
+            onClick={() => scrollTo("pencapaian")}
+            className="flex items-center justify-between w-full px-3.5 py-2.5 rounded-lg text-left text-sm font-medium text-gray-200 hover:bg-neutral-900 hover:text-green-400 border border-transparent hover:border-neutral-800 active:bg-neutral-800 transition-all cursor-pointer"
+          >
+            <span>Pencapaian</span>
+            <span className="text-xs text-green-500 font-mono">04.</span>
+          </button>
+          <button
+            onClick={() => scrollTo("kontak")}
+            className="flex items-center justify-between w-full px-3.5 py-2.5 rounded-lg text-left text-sm font-medium text-gray-200 hover:bg-neutral-900 hover:text-green-400 border border-transparent hover:border-neutral-800 active:bg-neutral-800 transition-all cursor-pointer"
+          >
+            <span>Kontak</span>
+            <span className="text-xs text-green-500 font-mono">05.</span>
+          </button>
+        </nav>
+      )}
     </header>
   )
 }

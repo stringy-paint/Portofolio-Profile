@@ -93,7 +93,7 @@ export const BackgroundBeamsWithCollision = ({
     <div
       ref={parentRef}
       className={cn(
-        "relative flex flex-col items-center w-full justify-start overflow-clip bg-gradient-to-b from-neutral-950 to-neutral-800",
+        "relative flex flex-col items-center w-full max-w-full justify-start overflow-hidden bg-gradient-to-b from-neutral-950 to-neutral-800",
         className
       )}
     >
@@ -241,15 +241,16 @@ const CollisionMechanism = ({
   );
 };
 
-const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
-  const spans = Array.from({ length: 20 }, (_, index) => ({
-    id: index,
-    initialX: 0,
-    initialY: 0,
-    directionX: Math.floor(Math.random() * 80 - 40),
-    directionY: Math.floor(Math.random() * -50 - 10),
-  }));
+const SPAN_CONFIGS = Array.from({ length: 20 }, (_, index) => ({
+  id: index,
+  initialX: 0,
+  initialY: 0,
+  directionX: Math.floor(((index * 13) % 80) - 40),
+  directionY: Math.floor(-(((index * 17) % 50) + 10)),
+  duration: ((index * 7) % 15) / 10 + 0.5,
+}));
 
+const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
   return (
     <div {...props} className={cn("absolute z-50 h-2 w-2", props.className)}>
       <motion.div
@@ -259,7 +260,7 @@ const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
         transition={{ duration: 1.5, ease: "easeOut" }}
         className="absolute -inset-x-10 top-0 m-auto h-2 w-10 rounded-full bg-gradient-to-r from-transparent via-green-500 to-transparent blur-sm"
       ></motion.div>
-      {spans.map((span) => (
+      {SPAN_CONFIGS.map((span) => (
         <motion.span
           key={span.id}
           initial={{ x: span.initialX, y: span.initialY, opacity: 1 }}
@@ -268,7 +269,7 @@ const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
             y: span.directionY,
             opacity: 0,
           }}
-          transition={{ duration: Math.random() * 1.5 + 0.5, ease: "easeOut" }}
+          transition={{ duration: span.duration, ease: "easeOut" }}
           className="absolute h-1 w-1 rounded-full bg-gradient-to-b from-green-500 to-green-300"
         />
       ))}
