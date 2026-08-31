@@ -191,11 +191,20 @@ function NavBar() {
   }, [isOpen]);
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
     setIsOpen(false);
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        const headerOffset = 80;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    }, 50);
   };
 
   return (
