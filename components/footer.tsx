@@ -1,9 +1,26 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaTerminal } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+
+  const scrollTo = (id: string) => {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        const headerOffset = 80;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    }, 50);
+  };
 
   return (
     <footer className="border-t border-neutral-800 bg-[#0d1117] pt-12 sm:pt-16 pb-8 font-sans text-gray-300">
@@ -12,10 +29,10 @@ export default function Footer() {
           
           {/* Kolom 1: Brand & Tagline */}
           <div className="space-y-3 sm:space-y-4">
-            <Link href="/" className="text-xl sm:text-2xl font-extrabold tracking-tighter text-white flex items-center gap-2 w-fit hover:text-green-400 transition-colors">
+            <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-xl sm:text-2xl font-extrabold tracking-tighter text-white flex items-center gap-2 w-fit hover:text-green-400 transition-colors cursor-pointer">
               <FaTerminal className="size-5 sm:size-6 text-green-500" />
               <span>Ryan.</span>
-            </Link>
+            </button>
             <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-xs">
               terbuka Untuk peluang kolaborasi, proyek pengembangan web, dan diskusi seputar keamanan siber. 
             </p>
@@ -25,11 +42,11 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-bold mb-3 sm:mb-4 text-sm sm:text-base">Navigasi Sistem</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-              <li><Link href="#about" className="hover:text-green-400 transition-colors">Tentang Saya</Link></li>
-              <li><Link href="#Projects" className="hover:text-green-400 transition-colors">Arsip Proyek</Link></li>
-              <li><Link href="#experience" className="hover:text-green-400 transition-colors">Riwayat Pengalaman</Link></li>
-              <li><Link href="#pencapaian" className="hover:text-green-400 transition-colors">Sertifikasi & Pencapaian</Link></li>
-              <li><Link href="#kontak" className="hover:text-green-400 transition-colors">Kontak</Link></li>
+              <li><button onClick={() => scrollTo("about")} className="hover:text-green-400 transition-colors cursor-pointer text-left">Tentang Saya</button></li>
+              <li><button onClick={() => scrollTo("Projects")} className="hover:text-green-400 transition-colors cursor-pointer text-left">Arsip Proyek</button></li>
+              <li><button onClick={() => scrollTo("experience")} className="hover:text-green-400 transition-colors cursor-pointer text-left">Riwayat Pengalaman</button></li>
+              <li><button onClick={() => scrollTo("pencapaian")} className="hover:text-green-400 transition-colors cursor-pointer text-left">Sertifikasi & Pencapaian</button></li>
+              <li><button onClick={() => scrollTo("kontak")} className="hover:text-green-400 transition-colors cursor-pointer text-left">Kontak</button></li>
             </ul>
           </div>
 

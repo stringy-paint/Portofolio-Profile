@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="id"
-      className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} dark antialiased scroll-smooth scroll-pt-24`}
     >
       <body className={`bg-background text-foreground ${jakarta.className} overflow-x-hidden min-h-screen`}>
         {children}
