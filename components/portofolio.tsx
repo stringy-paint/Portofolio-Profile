@@ -101,7 +101,7 @@ export default function Portfolio() {
               </div>
               <div className="text-xs sm:text-sm !m-0 !p-0 font-normal flex-1">
                 <span className="text-slate-400 line-clamp-3 sm:line-clamp-4">
-                  aplikasi pembelajaran untuk mahasiswa saling belajar materi 1 sama lain.
+                  Platform Peer-to-Peer (P2P) akademik yang menghubungkan mahasiswa dengan kating berkompeten. Solusi belajar efektif dengan bahasa sebaya sekaligus ruang monetisasi keahlian bagi pengajar.
                 </span>
               </div>
               <div className="relative flex w-full h-28 sm:h-32 rounded-lg mt-3 sm:mt-4 bg-gradient-to-br from-green-500/20 to-green-900/40 border border-green-500/30 overflow-hidden shrink-0">

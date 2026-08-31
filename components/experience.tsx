@@ -34,7 +34,7 @@ export default function Experience() {
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">Junior Penetration Tester</h3>
                 <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-green-400 font-mono bg-green-500/10 px-2.5 py-1 sm:px-3 rounded-full w-fit">
                   <Calendar className="size-3.5 sm:size-4" />
-                  <span>April 2026 – Sekarang</span>
+                  <span>Januari 2026 - Juni 2026</span>
                 </div>
               </div>
               <h4 className="text-sm sm:text-base md:text-lg font-semibold text-gray-300 mb-3 sm:mb-4">MBKM Vinix Batch 7 - Divisi Cybersecurity</h4>
@@ -59,12 +59,12 @@ export default function Experience() {
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">Full-Stack Web Developer</h3>
                 <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-green-400 font-mono bg-green-500/10 px-2.5 py-1 sm:px-3 rounded-full w-fit">
                   <Calendar className="size-3.5 sm:size-4" />
-                  <span>April 2026</span>
+                  <span>Januari 2026 - Juni 2026</span>
                 </div>
               </div>
-              <h4 className="text-sm sm:text-base md:text-lg font-semibold text-gray-300 mb-3 sm:mb-4">Proyek Digital Career Portal UIN</h4>
+              <h4 className="text-sm sm:text-base md:text-lg font-semibold text-gray-300 mb-3 sm:mb-4">Proyek Digital Pusat Karir UIN Jakarta</h4>
               <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm md:text-base text-gray-400 list-disc list-inside">
-                <li>Membangun situs web portal karier secara penuh dari sisi Frontend hingga Backend.</li>
+                <li>Membangun situs web portal Pusat karier secara penuh dari sisi Frontend hingga Backend.</li>
                 <li>Menyusun konfigurasi lingkungan aplikasi (environment) dan komponen admin.</li>
                 <li>Mendesain dan mengimplementasikan relasi tabel database.</li>
               </ul>
