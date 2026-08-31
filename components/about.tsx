@@ -87,6 +87,11 @@ export default function About() {
         {/* --- KOLOM KANAN: SKILLS (BADGE STYLE) --- */}
         <div className="w-full flex flex-col h-full">
           
+          {/* Spacer untuk menyamakan tinggi kotak dengan kolom kiri */}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 sm:mb-8 opacity-0 pointer-events-none select-none" aria-hidden="true">
+            Spacer
+          </h2>
+
           {/* Kotak Skills */}
           <div className="bg-black/40 backdrop-blur-sm border border-neutral-800 rounded-xl p-4 sm:p-6 md:p-8 shadow-[0_0_30px_rgba(0,0,0,0.5)] flex-1 flex flex-col justify-center">
             

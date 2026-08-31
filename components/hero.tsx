@@ -74,48 +74,62 @@ export default function Hero() {
         </div>
       </div>
 
-      Untuk membuat efek gambar ornamen teknologi (garis sirkuit, ikon server) yang melayang di belakang foto profil, Anda harus menggunakan teknik Absolute Positioning dan Z-Index di Tailwind CSS.
-
-Anda perlu membungkus elemen foto Anda dengan sebuah container, lalu meletakkan gambar latar belakang dengan posisi absolute dan z-index yang lebih rendah (-z-10), sehingga posisinya tertumpuk di belakang foto utama Anda.
-
-Berikut adalah kode yang sudah diperbarui khusus untuk bagian KOLOM KANAN. Ganti bagian KOLOM KANAN di kode Anda dengan kode di bawah ini:
-
-JavaScript
-      {/* KOLOM KANAN: Foto Profil & Background Tech */}
-      <div className="flex-1 flex justify-center items-center w-full mt-10 md:mt-0 relative min-h-[400px]">
+      {/* Tambahkan "isolate" agar z-index tidak tembus ke belakang background utama web */}
+      <div className="flex-1 flex justify-center items-center w-full mt-10 md:mt-0 relative min-h-[400px] isolate">
         
-        {/* 1. BACKGROUND ORNAMEN TECH (Di Belakang) */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none -z-10 scale-125 md:scale-150">
-          {/* Jika Anda punya gambar aset sendiri (misal tech-bg.png), gunakan tag Image Next.js ini: */}
-          {/* <Image src="/tech-bg.png" alt="Tech Background" fill className="object-contain" /> */}
-
-          {/* Atau, sebagai contoh instan, ini adalah inline SVG ala sirkuit & server: */}
-          <svg className="w-full h-full max-w-[600px] text-neutral-600" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            {/* Garis Sirkuit Atas */}
-            <path d="M 10 80 L 50 80 L 70 40 L 130 40" strokeDasharray="3 3" />
-            <circle cx="10" cy="80" r="2" fill="currentColor" />
-            <circle cx="130" cy="40" r="2" fill="currentColor" />
+        {/* 1. BACKGROUND ORNAMEN TECH */}
+        {/* Ubah menjadi z-0 dan warna menjadi text-gray-400 agar terlihat */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none z-0 scale-125 md:scale-150">
+          <svg className="w-full h-full max-w-[700px] text-gray-400" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
             
-            {/* Garis Sirkuit Bawah */}
-            <path d="M 190 120 L 150 120 L 130 160 L 70 160" />
-            <circle cx="190" cy="120" r="2" fill="currentColor" />
-            <circle cx="70" cy="160" r="2" fill="currentColor" />
+            {/* Garis Putus-putus Kiri */}
+            <circle cx="60" cy="220" r="8" fill="currentColor" className="opacity-80" />
+            <line x1="80" y1="220" x2="160" y2="220" stroke="currentColor" strokeWidth="4" strokeDasharray="10 10" className="opacity-80" />
 
-            {/* Ikon ala Server di Kanan Atas */}
-            <rect x="140" y="25" width="24" height="30" rx="2" />
-            <line x1="145" y1="32" x2="159" y2="32" />
-            <line x1="145" y1="40" x2="159" y2="40" />
-            <line x1="145" y1="48" x2="152" y2="48" />
+            {/* Garis Solid Kanan */}
+            <line x1="440" y1="380" x2="520" y2="380" stroke="currentColor" strokeWidth="4" className="opacity-80" />
+            <circle cx="540" cy="380" r="8" fill="currentColor" className="opacity-80" />
 
-            {/* Ikon ala Kode di Kiri Bawah */}
-            <rect x="25" y="140" width="30" height="24" rx="2" />
-            <polyline points="32,147 28,152 32,157" />
-            <polyline points="48,147 52,152 48,157" />
-            <line x1="42" y1="147" x2="38" y2="157" />
+            {/* Angka Biner Kiri Atas */}
+            <g className="opacity-20 font-mono text-lg fill-current tracking-widest">
+              <text x="70" y="100">0110101</text>
+              <text x="70" y="125">1010110</text>
+              <text x="70" y="150">0011011</text>
+              <text x="70" y="175">1101001</text>
+            </g>
+
+            {/* Ikon Server Kanan Atas */}
+            <g stroke="currentColor" strokeWidth="2.5" fill="none" className="opacity-60">
+              <rect x="420" y="70" width="75" height="24" rx="4" />
+              <circle cx="435" cy="82" r="3" fill="currentColor" />
+              <line x1="455" y1="82" x2="480" y2="82" />
+              
+              <rect x="420" y="104" width="75" height="24" rx="4" />
+              <circle cx="435" cy="116" r="3" fill="currentColor" />
+              <line x1="455" y1="116" x2="480" y2="116" />
+              
+              <rect x="420" y="138" width="75" height="24" rx="4" />
+              <circle cx="435" cy="150" r="3" fill="currentColor" />
+              <line x1="455" y1="150" x2="480" y2="150" />
+            </g>
+
+            {/* Ikon Code </> Kiri Bawah */}
+            <g stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" className="opacity-60">
+              <rect x="70" y="420" width="80" height="60" rx="8" />
+              <path d="M 95 435 L 80 450 L 95 465" />
+              <path d="M 125 435 L 140 450 L 125 465" />
+              <path d="M 115 430 L 105 470" />
+            </g>
+
+            {/* Jalur Sirkuit Halus (Background Belakang) */}
+            <g stroke="currentColor" strokeWidth="2" className="opacity-10" fill="none">
+              <path d="M 160 100 H 220 V 280 H 380 V 150 H 420" />
+              <path d="M 160 450 H 280 V 380 H 440" />
+            </g>
           </svg>
         </div>
 
-        {/* 2. FOTO PROFIL UTAMA (Di Depan) */}
+        {/* 2. FOTO PROFIL UTAMA */}
         <div className="relative z-10 w-[260px] h-[330px] sm:w-[320px] sm:h-[410px] md:w-[380px] md:h-[490px] lg:w-[440px] lg:h-[540px] max-w-full overflow-hidden rounded-2xl sm:rounded-[2rem] bg-gradient-to-b from-neutral-800 to-black shadow-2xl border border-neutral-800">
           <Image
             src="/ilustrasi.jpg" 
